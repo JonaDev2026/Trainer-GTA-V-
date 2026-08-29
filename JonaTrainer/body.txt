@@ -1,0 +1,2 @@
+hunger=64.4
+thirst=48.5
