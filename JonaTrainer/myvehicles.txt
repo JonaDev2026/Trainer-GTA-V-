@@ -1,3 +1,0 @@
-# I MIEI VEICOLI - salvati dal trainer
-# hashmodello|targa|primario|secondario|perlato|cerchi|x|y|z|heading|nome|elaborazioni
-1910507153|46EEK572|171|111|111|150|363.235|324.594|103.303|345.0|rs322|wt=0;tint=-1;liv=-1;ps=4;ts=255.255.255;
