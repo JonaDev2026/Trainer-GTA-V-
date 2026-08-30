@@ -1,0 +1,107 @@
+=========================================================
+ TRAINER + MOD UBER - GTA V ENHANCED
+ Come installare tutto da zero
+=========================================================
+
+Cosa serve prima (non e' incluso qui):
+  - GTA V Enhanced
+  - ScriptHookV per Enhanced
+  - ScriptHookVDotNet 3.9.0.6 (Enhanced)
+  - CodeWalker versione 48  (le versioni 46 e OpenIV NON vanno bene:
+    scrivono le texture in Resource Version 13 e il gioco crasha.
+    Serve la Version 5)
+
+---------------------------------------------------------
+1) GLI SCRIPT
+---------------------------------------------------------
+Copia la cartella "scripts" di questo pacchetto dentro:
+
+  C:\Program Files\Rockstar Games\Grand Theft Auto V Enhanced\
+
+Alla fine devi avere:
+
+  ...\Grand Theft Auto V Enhanced\scripts\Trainer.cs
+  ...\scripts\PosProbe.cs                (sonda di servizio, facoltativa)
+  ...\scripts\Trainer\                   (dati: config.ini, fuel.txt, odo.txt,
+                                          oil.txt, vehicles.txt, icone\ ...)
+  ...\scripts\Lavori\Uber\Uber.cs
+  ...\scripts\Lavori\Uber\nomi.txt       (100 nomi: 50 M, 50 F)
+
+Il trainer si apre con F4 (o RB + DPAD-GIU sul pad).
+I lavori si accendono e spengono dal menu MODS del trainer, che scrive
+scripts\Trainer\mods.ini. L'Uber e' un file a parte: il trainer non lo
+contiene, lo accende soltanto.
+
+---------------------------------------------------------
+2) LE TEXTURE DEL CRUSCOTTO (dlcpack)
+---------------------------------------------------------
+Copia la cartella "mods" di questo pacchetto dentro la cartella del gioco,
+sovrapponendola a quella che gia' hai:
+
+  ...\Grand Theft Auto V Enhanced\mods\update\x64\dlcpacks\trainerhud\
+        content.xml
+        setup2.xml
+        dlc.rpf        <-- contiene x64\textures.rpf\cruscotto.ytd
+
+Poi apri con OpenIV (in modalita' mods):
+
+  mods\update\update.rpf\common\data\dlclist.xml
+
+e aggiungi in fondo alla lista, prima di </Paths>:
+
+  <Item>dlcpacks:/trainerhud/</Item>
+
+---------------------------------------------------------
+3) LE IMMAGINI DENTRO cruscotto.ytd
+---------------------------------------------------------
+Le texture del cruscotto stanno tutte in un unico dizionario chiamato
+"cruscotto" (file cruscotto.ytd dentro dlc.rpf). Se vuoi rifarle o
+aggiornarle, i sorgenti sono in:
+
+  scripts\Trainer\icone\        (i PNG)
+  scripts\Trainer\icone\dds\    (gli stessi convertiti in DDS, DXT5, no mipmap)
+
+Nomi che il codice si aspetta dentro cruscotto.ytd:
+
+  sfondi        cruscotto2, cruscotto_night
+  luci          fari_on/off, abb_on/off
+  motore        motore_on/off, eco_on/off, elettric_on/off
+  batteria      batteria_on/off
+  carburante    benzina_on/off, energia_on/off
+  varie         limiter_on/off, tyres_on/off, doors_open, doors_closed
+  officina      wrench, wrench_off
+  frecce        freccia_sx, freccia_sx_off, freccia_dx, freccia_dx_off
+  uber          uber_phone
+
+Come si importano (CodeWalker 48):
+  1. apri dlc.rpf -> x64 -> textures.rpf -> cruscotto.ytd
+  2. Import/Replace con i file .dds della cartella icone\dds
+  3. salva. Controlla negli attributi che la Resource Version sia 5.
+
+Le stelle della valutazione (star.png) NON stanno nel .ytd: vengono
+lette direttamente da scripts\Trainer\icone\star.png.
+
+---------------------------------------------------------
+4) IMPOSTAZIONI CONSIGLIATE
+---------------------------------------------------------
+Nel trainer, menu MONDO:
+  Velocita del tempo = x2.5   (1 minuto di gioco ogni 16 secondi reali)
+L'Uber tiene lo stesso ritmo da solo se il trainer non lo sta gia' facendo.
+
+Menu VEICOLO ATTUALE:
+  Unita' di misura   km/h oppure mph (cambia cruscotto e navigatore)
+  Stazione radio     Off / Libera / una stazione fissa
+                     "Libera" lascia che la cambi tu nel gioco
+
+---------------------------------------------------------
+5) SE QUALCOSA NON VA
+---------------------------------------------------------
+Il log degli script e':
+
+  ...\Grand Theft Auto V Enhanced\ScriptHookVDotNet.log
+
+Li' dentro c'e' scritto se un .cs non compila e a che riga.
+
+Se il gioco crasha appena entri in macchina, quasi sempre e' il .ytd
+sbagliato (Resource Version 13 invece di 5) oppure manca una texture
+fra quelle elencate al punto 3.
